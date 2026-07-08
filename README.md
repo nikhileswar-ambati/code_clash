@@ -72,9 +72,3 @@ JUDGE0_BASE_URL=https://ce.judge0.com/
 
 Run `supabase/schema.sql` in the Supabase SQL editor, then enable authentication and realtime for the Clash tables.
 
-## Main API Routes
-
-- `GET /languages/`
-- `POST /compile/`
-- `POST /hints/`
-- `POST /askAI/`
