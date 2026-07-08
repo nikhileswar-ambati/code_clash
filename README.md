@@ -7,7 +7,6 @@ Code Clash is a full-stack coding practice and contest platform. Users can learn
 - DSA learning roadmap with LeetCode and GFG practice links
 - Coding workspace with problem statement, editor, and test results
 - Multi-language code execution through Judge0
-- AI hints and topic explanations through Gemini
 - Supabase login and realtime Clash data
 - Clash rooms, invite links, leaderboards, match history, and replay summaries
 - Contest hosting and contest problem pages
