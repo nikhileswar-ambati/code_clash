@@ -40,8 +40,8 @@ export default function AuthPage() {
   if (pageLoading) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-emerald-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_35%),linear-gradient(135deg,#020617_0%,#111827_45%,#0f172a_100%)] text-white">
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <Navbar />
         <div className="grid grid-cols-1 gap-8 pt-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <motion.div 

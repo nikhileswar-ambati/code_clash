@@ -77,8 +77,8 @@ export default function ClashLeaderboard() {
   }, [history, participants]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_35%),linear-gradient(135deg,#020617_0%,#111827_45%,#0f172a_100%)] text-white">
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <Navbar />
         <SharedHero
           eyebrow="Clash Leaderboard"

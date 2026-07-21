@@ -49,7 +49,7 @@ export default function Navbar() {
   return (
     <div className="flex items-center justify-between py-4">
       <Link to="/" className="flex items-center">
-        <img src="/logonew-removebg.png" alt="Code Clash" className="h-28 w-28" />
+        <img src="/logonew-removebg.png" alt="Code Clash" className="h-16 w-16 sm:h-20 sm:w-20" />
       </Link>
       <div className="flex items-center justify-end flex-1 gap-5">
         <button
