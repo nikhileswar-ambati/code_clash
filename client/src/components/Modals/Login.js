@@ -50,7 +50,7 @@ export default function Login() {
       });
 
       setAuthModalState((prev) => ({ ...prev, isOpen: false, type: 'login' }));
-      navigate('/problems');
+      navigate('/clash');
     } catch (error) {
       const message = error.message || "Unable to sign in";
       setError(error.message);

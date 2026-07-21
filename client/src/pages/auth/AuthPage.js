@@ -31,11 +31,17 @@ export default function AuthPage() {
       const userData = await getUserSession();
       setUser(userData);
       setPageLoading(false);
-
     };
 
     fetchData();
-  }, [navigate]);
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      setPageLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   if (pageLoading) return null;
 
@@ -58,7 +64,9 @@ export default function AuthPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               {!user ? (
                 <button
-                  onClick={() => setAuthModalState((prev) => ({ ...prev, isOpen: true, type: 'login' }))}
+                  onClick={() => {
+                    setAuthModalState((prev) => ({ ...prev, isOpen: true, type: 'login' }));
+                  }}
                   className="px-8 py-3 bg-emerald-400 text-gray-950 rounded-lg font-semibold hover:bg-emerald-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Sign In to Clash

@@ -78,6 +78,7 @@ export default function SignUp() {
             }
 
             setConfirmationEmail(inputs.email);
+            setAuthModalState((prev) => ({ ...prev, isOpen: false, type: 'login' }));
             toast.success("Account created. Please confirm your email before signing in.", {
                 position: "top-center",
                 autoClose: 5000,
@@ -98,15 +99,8 @@ export default function SignUp() {
 
             {confirmationEmail && (
                 <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-100">
-                    <p className="font-semibold">Confirm your email to finish signup.</p>
-                    <p className="mt-1">We sent a confirmation link to {confirmationEmail}. Open that email, confirm the account, then return here and log in.</p>
-                    <button
-                        type="button"
-                        className="mt-3 text-brand-orange hover:underline"
-                        onClick={() => handleClick("login")}
-                    >
-                        Go to login
-                    </button>
+                    <p className="font-semibold">Please confirm your email.</p>
+                    <p className="mt-1">We sent a confirmation link to {confirmationEmail}. After confirming, sign in with the same email and password.</p>
                 </div>
             )}
 

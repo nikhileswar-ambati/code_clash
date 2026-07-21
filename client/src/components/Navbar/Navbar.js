@@ -40,6 +40,7 @@ export default function Navbar() {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
       setUser(null);
+      setAuthModalState((prev) => ({ ...prev, isOpen: false, type: 'login' }));
       navigate('/');
     } catch (error) {
       console.error('Error during logout:', error.message);
