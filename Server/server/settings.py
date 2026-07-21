@@ -128,3 +128,32 @@ CORS_EXPOSE_HEADERS = ['Content-Disposition']
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 CORS_PREFLIGHT_MAX_AGE = 86400
 
+import os
+import dj_database_url
+
+
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "localhost"
+]
+
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    ...
+]
+
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
+}
+
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "localhost",
+]
