@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react'
-import { AiOutlineFullscreen, AiOutlineSetting, AiOutlineFullscreenExit, AiOutlineTeam } from "react-icons/ai";
+import { AiOutlineFullscreen, AiOutlineSetting, AiOutlineTeam } from "react-icons/ai";
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
 import {db} from '../firebaseConfig'
@@ -46,8 +46,6 @@ export default function PreferenceNav({settings,setSettings}) {
 	  const [remoteStream, setRemoteStream] = useState(null);
 	  const [peerConnection, setPeerConnection] = useState(null);
 	   const [isCaller, setIsCaller] = useState(false);
-		const [isDialogOpen, setIsDialogOpen] = useState(true); // Open modal initially
-		const [joinRoomId, setJoinRoomId] = useState(''); // room id input in modal
 
 // Register peer connection event listeners
 const registerPeerConnectionListeners = (pc) => {
@@ -178,16 +176,14 @@ const registerPeerConnectionListeners = (pc) => {
 		if (!localStream) {
 		  await openUserMedia();
 		}
-		setIsDialogOpen(false);
-		const joinRoomId = videoId;
-		const roomRef = doc(db, 'rooms', joinRoomId);
+		const roomRef = doc(db, 'rooms', videoId);
 		console.log("roomref",roomRef)
 		const roomSnapshot = await getDoc(roomRef);
 		if (!roomSnapshot.exists()) {
 		  console.error('Room does not exist.');
 		  return;
 		}
-		console.log('Joining room: ', joinRoomId);
+		console.log('Joining room: ', videoId);
 		const pc = new RTCPeerConnection(configuration);
 		setPeerConnection(pc);
 		registerPeerConnectionListeners(pc);

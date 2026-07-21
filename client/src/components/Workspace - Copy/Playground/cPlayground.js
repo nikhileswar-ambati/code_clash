@@ -15,12 +15,10 @@ export default function Playground({problem, setSuccess}) {
   const [activeTestCaseId, setActiveTestCaseId] = useState(0);
   let [userCode, setUserCode] = useState("//Enter your code here");
   const [solved, setSolved] = useState([]);
-  const [fontSize,setFontSize] = useLocalStorage("lcc-fontSize","16px");
+  const [fontSize] = useLocalStorage("lcc-fontSize","16px");
   const [testTab,setTestTab] = useState(0);
   const [submitMessage,setSubmitMessage] = useState('You have to submit your code first');
-  const [askMessage,setAskMessage] = useState('Try the Ask AI feature');
   const [submitting,setSubmitting] = useState(false)
-  const [asking,setAsking] = useState(false)
 
   const [settings,setSettings] = useState({
     fontSize: fontSize,
@@ -76,7 +74,7 @@ export default function Playground({problem, setSuccess}) {
     
           //get solved problem array
           console.log(user.email)
-          const { data,error } = await supabase
+          const { data } = await supabase
             .from('contests')
             .select('*')
             .eq('uemail',user.email)
@@ -110,8 +108,8 @@ export default function Playground({problem, setSuccess}) {
           setTestTab(1)
           toast.error(responseData.status.description, { position: "top-center", autoClose: 3000, theme: "dark" });
         }
-      } catch (error) {
-        console.error('Error:', error.message);
+      } catch (submitError) {
+        console.error('Error:', submitError.message);
       }
       setSubmitting(false)
   }
@@ -205,7 +203,7 @@ export default function Playground({problem, setSuccess}) {
           
         </div>
         </Split>
-        <EditorFooter handleSubmit={handleSubmit} submitting={submitting}  asking={asking} />
+        <EditorFooter handleSubmit={handleSubmit} submitting={submitting} />
     </div>
     </>
   )
@@ -214,13 +212,13 @@ export default function Playground({problem, setSuccess}) {
 function useGetCurrentProblem(problemId){
 	const [currentProblem, setCurrentProblem] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [problemDifficultyClass, setProblemDifficultyClass] = useState("");
+	const [, setProblemDifficultyClass] = useState("");
 
 	useEffect(()=>{
 		//fetch data from db
 		const getCurrentProblem =async ()=>{
 			setLoading(true)
-			const { data, error } = await supabase
+			const { data } = await supabase
 			.from('problems')
 			.select()
 			.eq('id',problemId)

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BsCheckCircle } from 'react-icons/bs';
-import { AiFillYoutube } from 'react-icons/ai';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase/supabase';
 

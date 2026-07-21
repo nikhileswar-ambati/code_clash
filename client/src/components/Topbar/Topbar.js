@@ -21,7 +21,7 @@ export default function Topbar({ problemPage }) {
     useEffect(() => {
         const fetchCurrentProblem = async () => {
             if (pid) {
-                const { data, error } = await supabase
+                const { data } = await supabase
                     .from('problems')
                     .select('order')
                     .eq('id', pid)
@@ -73,13 +73,7 @@ export default function Topbar({ problemPage }) {
 
     useEffect(() => {
         const getUserSession = async () => {
-            const { data: { session }, error } = await supabase.auth.getSession();
-
-            if (error) {
-                console.error('Error fetching user session:', error.message);
-                return null;
-            }
-
+            const { data: { session } } = await supabase.auth.getSession();
             setUser(session?.user);
         };
 

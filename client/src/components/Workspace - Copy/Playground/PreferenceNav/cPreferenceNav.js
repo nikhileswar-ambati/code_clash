@@ -25,8 +25,8 @@ export default function PreferenceNav({settings,setSettings}) {
 		  
 			  // Set languages in the state
 			  setLanguages(data.languages);
-			  // Set an initial default language if needed
-			  setSelectedLanguage(JSON.parse(localStorage.getItem('selected_language'))|| languages[0])
+			  const storedLanguage = JSON.parse(localStorage.getItem('selected_language'));
+			  setSelectedLanguage(storedLanguage || data.languages[0])
 			} catch (error) {
 			  console.error('Error fetching languages:', error);
 			}

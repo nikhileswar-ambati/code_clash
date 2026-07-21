@@ -4,7 +4,6 @@ import { authModalState } from '../../atoms/authModalAtom';
 import { supabase } from '../../supabase/supabase';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 export default function Login() {

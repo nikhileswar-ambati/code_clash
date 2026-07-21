@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { IoClose } from "react-icons/io5";
 import Login from './Login';
 import Signup from './SignUp';
@@ -6,7 +6,6 @@ import ResetPassword from './ResetPassword';
 import { useRecoilValue } from 'recoil';
 import { authModalState } from '../../atoms/authModalAtom';
 import { useSetRecoilState } from 'recoil';
-import { useEffect } from 'react';
 
 
 export default function AuthModal() {
@@ -37,9 +36,9 @@ export default function AuthModal() {
 
 function useCloseModal() {
     const setAuthModal = useSetRecoilState(authModalState);
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
       setAuthModal((prev) => ({ ...prev, isOpen: false, type: "login" }));
-    };
+    }, [setAuthModal]);
   
     useEffect(() => {
       const handleEsc = (e) => {
@@ -47,7 +46,7 @@ function useCloseModal() {
       };
       window.addEventListener("keydown", handleEsc);
       return () => window.removeEventListener("keydown", handleEsc);
-    }, []);
+    }, [closeModal]);
   
     return closeModal;
   }

@@ -419,7 +419,7 @@ function useGetCurrentProblem(problemId){
 		//fetch data from db
 		const getCurrentProblem =async ()=>{
 			setLoading(true)
-			const { data, error } = await supabase
+			const { data } = await supabase
 			.from('problems')
 			.select()
 			.eq('id',problemId)
@@ -465,7 +465,7 @@ function useGetUsersDataOnProblem(problemId){
 			// console.log(user)
 			if(user !== null)
 			{
-				const { data,error } = await supabase
+				const { data } = await supabase
 				.from('users')
 				.select('likedProblems,dislikedProblems,starredProblems,solvedProblems')
 				.eq('id',user.id)
@@ -490,7 +490,7 @@ function useGetUsersDataOnProblem(problemId){
 			}
 		}
 		getUsersDataOnProblems();
-	},[])
+	},[problemId])
 
 	return {userData,setUserData, userDoc}
 }

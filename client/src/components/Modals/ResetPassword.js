@@ -5,14 +5,12 @@ import { toast } from 'react-toastify';
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
-  const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
 
   const handleReset = async (e) => {
     e.preventDefault();
 
     try {
-      setSending(true);
       setError(null);
 
       const { error } = await supabase.auth.resetPasswordForEmail(email);
@@ -34,8 +32,6 @@ export default function ResetPassword() {
         autoClose: 3000,
         theme: "dark",
       });
-    } finally {
-      setSending(false);
     }
   };
 

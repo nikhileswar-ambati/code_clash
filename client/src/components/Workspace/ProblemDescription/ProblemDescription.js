@@ -495,7 +495,7 @@ function useGetUsersDataOnProblem(problemId){
 			// console.log(user)
 			if(user !== null)
 			{
-				const { data,error } = await supabase
+				const { data } = await supabase
 				.from('users')
 				.select('likedProblems,dislikedProblems,starredProblems,solvedProblems')
 				.eq('email',user.email)
@@ -520,7 +520,7 @@ function useGetUsersDataOnProblem(problemId){
 			}
 		}
 		getUsersDataOnProblems();
-	},[])
+	},[problemId])
 
 	return {userData,setUserData, userDoc}
 }
