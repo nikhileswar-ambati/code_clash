@@ -493,7 +493,7 @@ function useGetUsersDataOnProblem(problemId){
 		const getUsersDataOnProblems = async()=>{
 			const { data: { user } } = await supabase.auth.getUser()
 			// console.log(user)
-			if(user !== null)
+			if(user !== null) 
 			{
 				const { data } = await supabase
 				.from('users')
