@@ -79,7 +79,7 @@ export default function SignUp() {
 
             setConfirmationEmail(inputs.email);
             setAuthModalState((prev) => ({ ...prev, isOpen: false, type: 'login' }));
-            toast.success("Account created successfully.", {
+            toast.success("Please confirm your email to complete the registration process.", {
                 position: "top-center",
                 autoClose: 5000,
                 theme: "dark",
