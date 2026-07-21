@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Security
-SECRET_KEY = os.getenv("django_key")
+SECRET_KEY = os.getenv("DJANGO_KEY", "django-insecure-change-this")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
@@ -24,15 +24,8 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Database
-DATABASES = {
-    "default": dj_database_url.config(
-        default="sqlite:///db.sqlite3"
-    )
-}
+# Application definition
 
-
-# Applications
 INSTALLED_APPS = [
     "corsheaders",
 
@@ -44,18 +37,20 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
+
     "App",
 ]
 
 
-# Middleware
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
 
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -88,7 +83,22 @@ TEMPLATES = [
 WSGI_APPLICATION = "server.wsgi.application"
 
 
+
+# Database
+# Render will use PostgreSQL DATABASE_URL
+# Local fallback is SQLite
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
+}
+
+
+
 # Password validation
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -105,7 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -115,8 +127,10 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files
-STATIC_URL = "static/"
+
+STATIC_URL = "/static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
@@ -125,11 +139,15 @@ STATICFILES_STORAGE = (
 )
 
 
+
 # Default primary key
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+
 # CORS
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_HEADERS = [
@@ -141,10 +159,6 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
 ]
 
-CORS_EXPOSE_HEADERS = [
-    "Content-Disposition"
-]
-
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
@@ -153,4 +167,16 @@ CORS_ALLOW_METHODS = [
     "OPTIONS",
 ]
 
+CORS_EXPOSE_HEADERS = [
+    "Content-Disposition",
+]
+
 CORS_PREFLIGHT_MAX_AGE = 86400
+
+
+
+# CSRF for Render
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+]
