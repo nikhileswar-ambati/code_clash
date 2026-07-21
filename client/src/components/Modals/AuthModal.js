@@ -16,7 +16,7 @@ export default function AuthModal() {
       <div className="fixed inset-0 bg-black bg-opacity-60 z-[100]" onClick={closeModal}></div>
       <div className="w-full sm:w-[450px] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center items-center z-[101]">
         <div className="relative w-full h-full mx-auto flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow relative w-full bg-gradient-to-b from-brand-orange to-slate-900 mx-6 max-h-[90vh] overflow-hidden">
+          <div className="relative mx-6 w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/95 shadow-2xl backdrop-blur-xl">
             <div className="flex justify-end p-2">
               <button
                 type="button"

@@ -67,6 +67,15 @@ export default function Login() {
     }
   };
 
+  const getAuthRedirectUrl = () => {
+    if (typeof window === 'undefined') {
+      return 'https://codeclash.app/';
+    }
+
+    const origin = window.location.origin;
+    return origin && origin !== 'null' ? `${origin}/` : 'https://codeclash.app/';
+  };
+
   const handleResendConfirmation = async () => {
     if (!inputs.email) {
       toast.error("Enter your email first", { position: "top-center", theme: "dark" });
@@ -79,7 +88,7 @@ export default function Login() {
         type: "signup",
         email: inputs.email,
         options: {
-          emailRedirectTo: window.location.origin,
+          emailRedirectTo: getAuthRedirectUrl(),
         },
       });
       if (error) throw error;

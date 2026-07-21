@@ -12,15 +12,9 @@ export default function SignUp() {
     }; 
     const [inputs, setInputs] = useState({
         name: '',
-        profession: '',
-        institute: '',
-        age: '',
         email: '',
         displayName: '',
         password: '',
-        reason: '',
-        experience: '',
-        level: '',
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -28,6 +22,15 @@ export default function SignUp() {
 
     const handleChangeInput = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const getAuthRedirectUrl = () => {
+        if (typeof window === 'undefined') {
+            return 'https://codeclash.app/';
+        }
+
+        const origin = window.location.origin;
+        return origin && origin !== 'null' ? `${origin}/` : 'https://codeclash.app/';
     };
 
     const handleRegister = async (e) => {
@@ -45,7 +48,7 @@ export default function SignUp() {
                 email: inputs.email,
                 password: inputs.password,
                 options: {
-                    emailRedirectTo: window.location.origin,
+                    emailRedirectTo: getAuthRedirectUrl(),
                     data: {
                         displayName: inputs.displayName,
                         name: inputs.name,
@@ -65,12 +68,6 @@ export default function SignUp() {
                                 email: inputs.email,
                                 displayName: inputs.displayName,
                                 name: inputs.name,
-                                profession: inputs.profession,
-                                institute: inputs.institute,
-                                age: inputs.age,
-                                reason: inputs.reason,
-                                experience: inputs.experience,
-                                level: inputs.level,
                             },
                         ]);
 
@@ -134,55 +131,6 @@ export default function SignUp() {
                 />
             </div>
             <div>
-                <label htmlFor="profession" className="text-sm font-medium block mb-2 text-gray-300">
-                    Profession
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="profession"
-                    id="profession"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder="Working/Student"
-                />
-            </div>
-            <div>
-                <label htmlFor="institute" className="text-sm font-medium block mb-2 text-gray-300">
-                    Institute/Company
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="institute"
-                    id="institute"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder=""
-                />
-            </div>
-            <div>
-                <label htmlFor="age" className="text-sm font-medium block mb-2 text-gray-300">
-                    Age 
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="age"
-                    id="age"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder="Enter your age"
-                />
-            </div>
-
-            <div>
                 <label htmlFor="email" className="text-sm font-medium block mb-2 text-gray-300">
                     Email
                 </label>
@@ -228,55 +176,6 @@ export default function SignUp() {
                         bg-gray-600 border-gray-500 placeholder-gray-400 text-white
                     "
                     placeholder="*******"
-                />
-            </div>
-
-            <div>
-                <label htmlFor="reason" className="text-sm font-medium block mb-2 text-gray-300">
-                    Why do I want to learn coding?
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="reason"
-                    id="reason"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder=""
-                />
-            </div>
-            <div>
-                <label htmlFor="experience" className="text-sm font-medium block mb-2 text-gray-300">
-                    Current coding experience
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="experience"
-                    id="experience"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder=""
-                />
-            </div>
-            <div>
-                <label htmlFor="level" className="text-sm font-medium block mb-2 text-gray-300">
-                    Level
-                </label>
-                <input
-                    onChange={handleChangeInput}
-                    type="text"
-                    name="level"
-                    id="level"
-                    className="
-                        border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        bg-gray-600 border-gray-500 placeholder-gray-400 text-white
-                    "
-                    placeholder=""
                 />
             </div>
 
